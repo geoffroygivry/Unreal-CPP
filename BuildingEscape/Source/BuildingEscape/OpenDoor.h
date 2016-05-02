@@ -19,16 +19,26 @@ public:
 	virtual void BeginPlay() override;
 
 	void OpenDoor();
+	void CloseDoor();
 	
 	// Called every frame
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
 private:
-	UPROPERTY(EditAnywhere)
-		ATriggerVolume* PressurePlate;
 
 	UPROPERTY(EditAnywhere)
-		AActor* ActorThatOpen;
+	float OpenAngle = -90.0f;
+
+	UPROPERTY(EditAnywhere)
+	ATriggerVolume* PressurePlate;
+
+	UPROPERTY(EditAnywhere)
+	float DoorCloseDelay = 1.f;
+
+	float LastDoorOpenTime;
+
+	AActor* ActorThatOpen;
+	AActor* Owner; // The owning door
 		
 	
 };
